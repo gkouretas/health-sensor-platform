@@ -61,29 +61,33 @@ class Window:
                 #     self.bottom_frame.columnconfigure(idx, weight=cols['bottom']['weight'][idx])        
         
 
-    def windowBody(self, main, body, frame=None):
-        if(main):
-            if not frame: main_label = Label(self.root, text=main[0], font=('Arial', 25))
-            elif(frame == 'top'): Label(self.top_frame, text=main[0], font=('Arial', 25))
-            elif(frame == 'bottom'): Label(self.bottom_frame, text=main[0], font=('Arial', 25))
-            main_label.grid(column=main[1][0], row=main[1][1])
-            
-        if(body):
-            if not frame: body_label = Label(self.root, text=body[0], font=('Arial', 12))
-            elif(frame == 'top'): body_label = Label(self.top_frame, text=body[0], font=('Arial', 12))
-            elif(frame == 'bottom'): body_label = Label(self.bottom_frame, text=body[0], font=('Arial', 12))
-            body_label.grid(column=body[1][0], row=body[1][1])
-    
+    def addLabel(self, text, coords, head=False, frame=None, font_type='Arial'):
+        if(head): font_size = 25
+        else: font_size = 12
+
+        if not frame: label = Label(self.root, text=text, font=(font_type, font_size))
+        elif(frame == 'top'): label = Label(self.top_frame, text=text, font=(font_type, font_size))
+        elif(frame == 'bottom'): label = Label(self.bottom_frame, text=text, font=(font_type, font_size))
+        label.grid(column=coords[0], row=coords[1])
+
+    def addEntry(self, coords, head=False, frame=None):
+        if not frame: entry = Entry(self.root)
+        elif(frame == 'top'): entry = Entry(self.top_frame)
+        elif(frame == 'bottom'): entry = Entry(self.bottom_frame)
+        entry.grid(column=coords[0], row=coords[1], sticky='ew')
+
     def addButton(self, name, pos, color, command, args, frame=None, wait=False):
-        if not frame: 
-            button = Button(self.root, text=name, bg=color, command=lambda: command(*args))
-            button.grid(column=pos[0], row=pos[1])
+        if not frame: button = Button(self.root, text=name, bg=color, command=lambda: command(*args))
         elif(frame == 'top'): button = Button(self.top_frame, text=name, bg=color, command=lambda: command(*args))
-        elif(frame == 'bottom'): 
-            button = Button(self.bottom_frame, text=name, bg=color, command=lambda: command(*args))
-            button.grid(column=1, row=0)
-        
-        # button.grid(column=pos[0], row=pos[1])
+        elif(frame == 'bottom'): button = Button(self.bottom_frame, text=name, bg=color, command=lambda: command(*args))
+        button.grid(column=pos[0], row=pos[1])
+
+    def addDropDown(self, coords, items, head=False, frame=None):
+        if not frame: entry = OptionMenu(self.root, StringVar(), *items)
+        elif(frame == 'top'): entry = OptionMenu(self.top_frame, StringVar(), *items)
+        elif(frame == 'bottom'): entry = OptionMenu(self.bottom_frame, StringVar(), *items)
+        entry.grid(column=coords[0], row=coords[1], sticky='ew')        
+
 
     def clearWindow(self):
         try:

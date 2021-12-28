@@ -20,9 +20,15 @@ def createHome(root):
         orientation='single'
     )
 
-    home.windowBody(
-        main=('Health Sensor UI', (0,0)),
-        body=('This is a description', (0,1)),
+    home.addLabel(
+        text='Health Sensor UI', 
+        coords=(0,0),
+        head=True
+    )
+    
+    home.addLabel(
+        text='This is a description',
+        coords=(0,1),
     )
 
     home.addButton(
@@ -61,8 +67,8 @@ def createUser(new_user):
     new_user.createGrid(
         rows={'top': 
                 {
-                    'count': 4,
-                    'weight': [1, 1, 1, 1]
+                    'count': 5,
+                    'weight': [1, 1, 1, 1, 1]
                 },
               'bottom':
                 {
@@ -84,28 +90,59 @@ def createUser(new_user):
         orientation='half'
     )
 
-    new_user.windowBody(
-        main=None,
-        body=('First Name', (0,0)),
+    new_user.addLabel(
+        text='First Name',
+        coords=(0,0),
         frame='top'
     )
 
-    new_user.windowBody(
-        main=None,
-        body=('Last Name', (0,1)),
+    new_user.addLabel(
+        text='Last Name',
+        coords=(0,1),
         frame='top'
     )
 
-    new_user.windowBody(
-        main=None,
-        body=('Gender', (0,2)),
+    new_user.addLabel(
+        text='Age', 
+        coords=(0,2),
         frame='top'
     )
 
-    new_user.windowBody(
-        main=None,
-        body=('Age', (0,3)),
+    new_user.addLabel(
+        text='Gender', 
+        coords=(0,3),
         frame='top'
+    )
+
+    new_user.addLabel(
+        text='Ethnicity', 
+        coords=(0,4),
+        frame='top'
+    )
+
+    for i in range(3):
+        new_user.addEntry(
+            coords=(1,i),
+            frame='top'
+        )
+
+    new_user.addDropDown(
+        coords=(1,3),
+        items=['Male', 'Female', 'Do not wish to specify'],
+        frame='top',
+    )
+
+    new_user.addDropDown(
+        coords=(1,4),
+        items=[
+            'Black',
+            'Chinese',
+            'Indian',
+            'White',
+            'Mixed/multiple ethnic groups',
+            'Other ethnic group'
+        ],
+        frame='top',
     )
 
     new_user.addButton(
