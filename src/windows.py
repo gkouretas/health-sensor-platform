@@ -1,6 +1,6 @@
 from typing import NewType
 import tools
-from buttons import *
+from callbacks import *
 
 def createHome(root):
     home = tools.Window(root, 450, 450)
@@ -130,6 +130,7 @@ def createUser(new_user):
         coords=(1,3),
         items=['Male', 'Female', 'Do not wish to specify'],
         frame='top',
+        cmd=getGender
     )
 
     new_user.addDropDown(
@@ -143,13 +144,14 @@ def createUser(new_user):
             'Other ethnic group'
         ],
         frame='top',
+        cmd=getEthnicity
     )
 
     new_user.addButton(
         name='Submit',
         pos=(1,0),
         color='blue',
-        command=newUser,
+        command=addUser,
         args=[new_user],
         frame='bottom',
         wait=False

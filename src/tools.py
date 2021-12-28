@@ -1,5 +1,5 @@
 from tkinter import *    
-from buttons import *
+from callbacks import *
 
 class Window:
     def __init__(self, root, width, height):
@@ -82,12 +82,20 @@ class Window:
         elif(frame == 'bottom'): button = Button(self.bottom_frame, text=name, bg=color, command=lambda: command(*args))
         button.grid(column=pos[0], row=pos[1])
 
-    def addDropDown(self, coords, items, head=False, frame=None):
-        if not frame: entry = OptionMenu(self.root, StringVar(), *items)
-        elif(frame == 'top'): entry = OptionMenu(self.top_frame, StringVar(), *items)
-        elif(frame == 'bottom'): entry = OptionMenu(self.bottom_frame, StringVar(), *items)
+    def addDropDown(self, coords, items, cmd, head=False, frame=None):
+        if not frame: 
+            val = StringVar(self.root)
+            val.set('')
+            entry = OptionMenu(self.root, val, *items, command=cmd)
+        elif(frame == 'top'): 
+            val = StringVar(self.top_frame)
+            val.set('')
+            entry = OptionMenu(self.top_frame, val, *items, command=cmd)
+        elif(frame == 'bottom'): 
+            val = StringVar(self.top_frame)
+            val.set('')
+            entry = OptionMenu(self.bottom_frame, val, *items, command=cmd)
         entry.grid(column=coords[0], row=coords[1], sticky='ew')        
-
 
     def clearWindow(self):
         try:
