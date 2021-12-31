@@ -1,5 +1,6 @@
 from typing import NewType
 import tools
+import os
 from callbacks import *
 
 def createHome(root):
@@ -9,7 +10,7 @@ def createHome(root):
 
     home.createWindow(
         title=title,
-        size='450x450', 
+        size='900x900', 
         resize=[True, True])
 
     home.createGrid(
@@ -40,16 +41,18 @@ def createHome(root):
         wait=False
     )
 
-    home.addButton(
-        name='Existing User',
-        pos=(0,3),
-        color='blue',
-        command=newUser,
-        args=[home],
-        wait=False
-    )
+    users = [user for user in os.listdir("./users")]
+    if users: 
+        home.addButton(
+            name='Existing User',
+            pos=(0,3),
+            color='blue',
+            command=existingUser,
+            args=[home],
+            wait=False
+        )
 
-def createUser(new_user):
+def createUserPage(new_user):
     title = 'Health Sensor UI'
 
     new_user.createFrame(
@@ -156,3 +159,34 @@ def createUser(new_user):
         frame='bottom',
         wait=False
     )
+
+def createExistingUserPage(existing_user):
+    users = [user for user in os.listdir("./users")]
+    existing_user.createGrid(
+        rows={'count': 3,
+              'weight': [1, 1, 1]},
+        cols={'count': 1,
+              'weight': [1]},
+        orientation='single'
+    )
+
+    existing_user.addLabel(
+        text='Select User',
+        coords=(0,0)
+    )
+
+    existing_user.addDropDown(
+        coords=(0,1),
+        items=users,
+        cmd=placeholder
+    )
+
+    existing_user.addButton(
+        name='Submit',
+        pos=(0,2),
+        color='blue',
+        command=placeholder,
+        args=[existing_user],
+        wait=False
+    )
+

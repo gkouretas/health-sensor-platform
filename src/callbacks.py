@@ -4,7 +4,7 @@ from tkinter import messagebox
 
 def newUser(window):
     window.clearWindow()
-    windows.createUser(window)
+    windows.createUserPage(window)
 
 def addUser(window):
     user_info = []
@@ -18,8 +18,14 @@ def addUser(window):
     if msg: messagebox.showerror('Error', msg, icon=messagebox.WARNING)
     else: 
         window.clearWindow()
-        # add code to save user 
+        saveUser(user_info[0] + " " + user_info[1], user_info)
         # add code to go to dashboard
+
+def existingUser(window):
+    window.clearWindow()
+    windows.createExistingUserPage(window)    
+
+def placeholder(window): print("placeholder function")
 
 def getGender(*args): 
     global val_gender 
