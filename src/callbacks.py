@@ -19,7 +19,7 @@ def addUser(window):
     else: 
         window.clearWindow()
         saveUser(user_info[0] + " " + user_info[1], user_info)
-        # add code to go to dashboard
+        # add code to go to dashboard here
 
 def existingUser(window):
     window.clearWindow()
