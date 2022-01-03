@@ -1,0 +1,8 @@
+I2C
+- Read: 
+    - MAX30101: 0xAE
+    - MLX90614: 0x5A
+
+- Write:
+    - MAX30101: 0xAF
+    - MLX90614: n/a
