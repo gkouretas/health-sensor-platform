@@ -456,15 +456,15 @@ void MAX30101::setup(byte powerLevel, byte sampleAverage, byte ledMode, int samp
   switch(ledMode) {
       case (1):
         setLEDMode(MAX30101_MODE_REDONLY); //Red only
-        activeLEDs = numLED;
+        activeLEDs = ledMode;
         break;
       case (2):
         setLEDMode(MAX30101_MODE_REDIRONLY); //Red only
-        activeLEDs = numLED;
+        activeLEDs = ledMode;
         break;
       case (3):
         setLEDMode(MAX30101_MODE_MULTILED);
-        activeLEDs = numLED;
+        activeLEDs = ledMode;
         break;
       case (4):
         setLEDMode(MAX30101_MODE_MULTILED);
