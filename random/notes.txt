@@ -1,8 +1,13 @@
 I2C
-- Read: 
-    - MAX30101: 0xAE
-    - MLX90614: 0x5A
+- MAX30101: 0x57
+- MLX90614: 0x5A
+- SSD1306: 0x3C
 
-- Write:
-    - MAX30101: 0xAF
-    - MLX90614: n/a
+Using Green LED w/ MAX30101
+
+[ ] Make slot 1 the green LED for multi-LED mode
+[ ] Higher signal level
+    [ ] Make ADC FS range = 4096 nA 
+    OR 
+    [ ] Adjust LED current (suggested peak of 25 / 1.00 mA)
+        Perform by changing LED4GreenPulseAmp register to 0xFF (80 mA)
