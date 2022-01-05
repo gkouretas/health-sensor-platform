@@ -22,7 +22,7 @@
 #include <Wire.h>
 #include "MAX30101.h"
 
-MAX30101 particleSensor;
+MAX30101 ppg;
 
 #define debug Serial //Uncomment this line if you're using an Uno or ESP
 //#define debug SerialUSB //Uncomment this line if you're using a SAMD21
@@ -33,23 +33,23 @@ void setup()
   debug.println("MAX30101 Basic Readings Example");
 
   // Initialize sensor
-  if (particleSensor.begin() == false)
+  if (ppg.begin() == false)
   {
     debug.println("MAX30101 was not found. Please check wiring/power. ");
     while (1);
   }
 
-  particleSensor.setup(); //Configure sensor. Use 6.4mA for LED drive
+  ppg.setup(); //Configure sensor. Use 6.4mA for LED drive
 }
 
 void loop()
 {
   debug.print(" R[");
-  debug.print(particleSensor.getRed());
+  debug.print(ppg.getRed());
   debug.print("] IR[");
-  debug.print(particleSensor.getIR());
+  debug.print(ppg.getIR());
   debug.print("] G[");
-  debug.print(particleSensor.getGreen());
+  debug.print(ppg.getGreen());
   debug.print("]");
 
   debug.println();

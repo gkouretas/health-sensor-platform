@@ -33,7 +33,7 @@
 #include <Wire.h>
 #include "MAX30101.h"
 
-MAX30101 particleSensor;
+MAX30101 ppg;
 
 void setup()
 {
@@ -41,7 +41,7 @@ void setup()
   Serial.println("Initializing...");
 
   // Initialize sensor
-  if (!particleSensor.begin(Wire, I2C_SPEED_FAST)) //Use default I2C port, 400kHz speed
+  if (!ppg.begin(Wire, I2C_SPEED_FAST)) //Use default I2C port, 400kHz speed
   {
     Serial.println("MAX30101 was not found. Please check wiring/power. ");
     while (1);
@@ -55,7 +55,7 @@ void setup()
   int pulseWidth = 411; // Options: 69, 118, 215, 411
   int adcRange = 4096; // Options: 2048, 4096, 8192, 16384
 
-  particleSensor.setup(ledBrightness, sampleAverage, ledMode, sampleRate, pulseWidth, adcRange); //Configure sensor with these settings
+  ppg.setup(ledBrightness, sampleAverage, ledMode, sampleRate, pulseWidth, adcRange); //Configure sensor with these settings
 
   //Arduino plotter auto-scales annoyingly. To get around this, pre-populate
   //the plotter with 500 of an average reading from the sensor
@@ -65,7 +65,7 @@ void setup()
   long baseValue = 0;
   for (byte x = 0 ; x < avgAmount ; x++)
   {
-    baseValue += particleSensor.getGreen(); //Read the green value
+    baseValue += ppg.getGreen(); //Read the green value
   }
   baseValue /= avgAmount;
 
@@ -76,5 +76,5 @@ void setup()
 
 void loop()
 {
-  Serial.println(particleSensor.getGreen()); //Send raw data to plotter
+  Serial.println(ppg.getGreen()); //Send raw data to plotter
 }
