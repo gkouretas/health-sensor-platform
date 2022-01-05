@@ -1,0 +1,3 @@
+[submodule "Adafruit-AP3602A-PCB"]
+	path = Adafruit-AP3602A-PCB
+	url = https://github.com/adafruit/Adafruit-AP3602A-PCB
