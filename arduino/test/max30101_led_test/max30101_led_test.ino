@@ -19,38 +19,41 @@
   This code is released under the [MIT License](http://opensource.org/licenses/MIT).
 */
 
-#include <Wire.h>
-#include "MAX30101.h"
+//#include <Wire.h>
+#include "MAX30105.h"
+//#include "MAX30101.h"
 
-MAX30101 ppg;
+MAX30105 ppg;
+//MAX30101 ppg;
 
-#define debug Serial //Uncomment this line if you're using an Uno or ESP
+//#define debug Serial //Uncomment this line if you're using an Uno or ESP
 //#define debug SerialUSB //Uncomment this line if you're using a SAMD21
 
 void setup()
 {
-  debug.begin(9600);
-  debug.println("MAX30101 Basic Readings Example");
-
+  Serial.begin(9600);
+  while(!Serial);
+  Serial.println("MAX30101 Basic Readings Example");
+//
   // Initialize sensor
-  if (ppg.begin() == false)
-  {
-    debug.println("MAX30101 was not found. Please check wiring/power. ");
-    while (1);
-  }
+//  if (ppg.begin() == false)
+//  {
+//    Serial.println("MAX30101 was not found. Please check wiring/power. ");
+//    while (1);
+//  }
 
   ppg.setup(); //Configure sensor. Use 6.4mA for LED drive
 }
 
-void loop()
-{
-  debug.print(" R[");
-  debug.print(ppg.getRed());
-  debug.print("] IR[");
-  debug.print(ppg.getIR());
-  debug.print("] G[");
-  debug.print(ppg.getGreen());
-  debug.print("]");
+void loop() {
+  Serial.println("MAX30101 Basic Readings Example");
+  Serial.print(" R[");
+  Serial.print(ppg.getRed());
+  Serial.print("] IR[");
+  Serial.print(ppg.getIR());
+//  Serial.print("] G[");
+//  Serial.print(ppg.getGreen());
+  Serial.print("]");
 
-  debug.println();
+  Serial.println();
 }
